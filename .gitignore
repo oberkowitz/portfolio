@@ -1,0 +1,18 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Optional: If you want to ignore large media files during development
+# Uncomment these if needed:
+# *.mp4
+# *.mov
+# *.avi
+# *.wmv
+
