@@ -81,13 +81,20 @@ function loadProjects() {
 
     projectsGrid.innerHTML = projects.map(project => `
         <a href="${project.link}" class="project-card"${project.isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''}>
-            ${project.image
-                ? `<img src="${project.image}" alt="${project.title}" class="project-image" onerror="this.style.background='#000000'">`
-                : `<div class="project-image" aria-hidden="true"></div>`
-            }
-            <div class="project-content">
-                <h3 class="project-title">${project.title}</h3>
-                <p class="project-description">${project.description}</p>
+            <div class="project-media">
+                ${project.image
+                    ? `<img src="${project.image}" alt="${project.title}" class="project-image" onerror="this.style.background='#000000'">`
+                    : `<div class="project-image" aria-hidden="true"></div>`
+                }
+                <div class="project-info">
+
+                    <div class="project-tooltip">
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-description">${project.description}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="project-content" aria-hidden="true">
                 <div class="project-tags">
                     ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                 </div>
