@@ -16,17 +16,19 @@ navLinks.forEach(link => {
     });
 });
 
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+// Smooth scrolling for anchor links (including dynamically inserted ones)
+document.addEventListener('click', (e) => {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (!anchor) return;
+
+    const href = anchor.getAttribute('href');
+    const target = document.querySelector(href);
+    if (!target) return;
+
+    e.preventDefault();
+    target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
     });
 });
 
@@ -56,40 +58,55 @@ function highlightNav() {
 window.addEventListener('scroll', highlightNav);
 
 // Load projects dynamically
+// NOTE: `anchorId` is used for the inline project detail section on the home page.
 const projects = [
     {
-        id: 'parasocialist',
+        anchorId: 'parasocialist',
         title: 'Parasocialist',
-        description: 'A Berlin-based punk project weaving sardonic wit and playful defiance. Rejoice! EP released September 2025.',
+        subtitle: 'Rejoice! EP',
+        description: 'A Berlin-based punk project weaving sardonic wit and playful defiance. EP released September 2025.',
+        meta: ['September 2025', 'Berlin, Germany', 'Punk'],
         image: 'assets/images/parasocialist/cover.jpg',
         tags: ['Music', 'Punk', 'Berlin', 'Production'],
         link: 'projects/project-1.html'
     },
     {
-        id: 'project-2',
-        title: 'Sample Project 2',
-        description: 'Another project description. Showcase your work, skills, and creativity here.',
-        image: 'https://via.placeholder.com/400x200',
+        anchorId: 'project-2',
+        title: 'Project 2',
+        subtitle: 'Another example project',
+        description: 'A template-style project page. Replace this copy with your real overview, process, and results.',
+        meta: ['2024', 'Design'],
+        image: '',
         tags: ['Design', 'UI/UX', 'React'],
         link: 'projects/project-2.html'
     },
     {
-        id: 'project-3',
-        title: 'Sample Project 3',
-        description: 'Add more projects to demonstrate your range of skills and interests.',
-        image: 'https://via.placeholder.com/400x200',
-        tags: ['Mobile', 'iOS', 'Swift'],
+        anchorId: 'project-3',
+        title: 'Project 3',
+        subtitle: 'Third example project',
+        description: 'A template-style project page for mobile development. Replace with your real content and media.',
+        meta: ['2024', 'Mobile Development'],
+        image: '',
+        tags: ['Mobile', 'Development'],
         link: 'projects/project-3.html'
     }
 ];
 
 function loadProjects() {
     const projectsGrid = document.getElementById('projectsGrid');
-    if (!projectsGrid) return;
+    const projectsDetails = document.getElementById('projectsDetails');
+    if (!projectsGrid || !projectsDetails) return;
+
+    const imageMarkup = project => {
+        if (project.image) {
+            return `<img src="${project.image}" alt="${project.title}" class="project-image" onerror="this.onerror=null; this.src=''; this.style.background='linear-gradient(135deg, #6366f1, #8b5cf6)'">`;
+        }
+        return `<div class="project-image-placeholder" aria-hidden="true"></div>`;
+    };
 
     projectsGrid.innerHTML = projects.map(project => `
-        <a href="${project.link}" class="project-card">
-            <img src="${project.image}" alt="${project.title}" class="project-image" onerror="this.style.background='linear-gradient(135deg, #6366f1, #8b5cf6)'">
+        <a href="#${project.anchorId}" class="project-card" aria-label="View project: ${project.title}">
+            ${imageMarkup(project)}
             <div class="project-content">
                 <h3 class="project-title">${project.title}</h3>
                 <p class="project-description">${project.description}</p>
@@ -98,6 +115,34 @@ function loadProjects() {
                 </div>
             </div>
         </a>
+    `).join('');
+
+    projectsDetails.innerHTML = projects.map(project => `
+        <div class="project-detail" id="${project.anchorId}">
+            ${project.image ? `
+                <img src="${project.image}" alt="${project.title}" class="project-image" onerror="this.onerror=null; this.src=''; this.style.background='linear-gradient(135deg, #6366f1, #8b5cf6)'">
+            ` : `
+                <div class="project-image-placeholder" aria-hidden="true"></div>
+            `}
+            <div class="project-detail-header">
+                <h3 class="project-detail-title">${project.title}</h3>
+                ${project.subtitle ? `<p class="project-detail-subtitle">${project.subtitle}</p>` : ''}
+                ${project.meta?.length ? `
+                    <div class="project-detail-meta">
+                        ${project.meta.map(item => `<span>${item}</span>`).join(' <span class="meta-separator">•</span> ')}
+                    </div>
+                ` : ''}
+            </div>
+            <div class="project-detail-body">
+                <p class="project-description">${project.description}</p>
+                <div class="project-tags">
+                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+                <div class="project-detail-link">
+                    <a href="${project.link}" class="btn btn-secondary">Open Project Page</a>
+                </div>
+            </div>
+        </div>
     `).join('');
 }
 
