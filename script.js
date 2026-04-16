@@ -63,23 +63,15 @@ const projects = [
         description: 'A Berlin-based punk project weaving sardonic wit and playful defiance. Rejoice! EP released September 2025.',
         image: 'assets/images/parasocialist/cover.jpg',
         tags: ['Music', 'Punk', 'Berlin', 'Production'],
-        link: 'projects/project-1.html'
+        link: 'projects/parasocialist-rejoice-ep.html'
     },
     {
-        id: 'project-2',
-        title: 'Sample Project 2',
-        description: 'Another project description. Showcase your work, skills, and creativity here.',
-        image: 'https://via.placeholder.com/400x200',
-        tags: ['Design', 'UI/UX', 'React'],
-        link: 'projects/project-2.html'
-    },
-    {
-        id: 'project-3',
-        title: 'Sample Project 3',
-        description: 'Add more projects to demonstrate your range of skills and interests.',
-        image: 'https://via.placeholder.com/400x200',
-        tags: ['Mobile', 'iOS', 'Swift'],
-        link: 'projects/project-3.html'
+        id: 'surface-tension',
+        title: 'Surface Tension',
+        description: 'An electronic EP by Halffish, written, produced, and mixed by Oren Berkowitz. Released December 2019.',
+        image: 'assets/images/halffish/surface-tension-cover.jpeg',
+        tags: ['Electronic', 'Deep House', 'Berlin'],
+        link: 'projects/halffish-surface-tension.html'
     }
 ];
 
@@ -88,8 +80,11 @@ function loadProjects() {
     if (!projectsGrid) return;
 
     projectsGrid.innerHTML = projects.map(project => `
-        <a href="${project.link}" class="project-card">
-            <img src="${project.image}" alt="${project.title}" class="project-image" onerror="this.style.background='linear-gradient(135deg, #6366f1, #8b5cf6)'">
+        <a href="${project.link}" class="project-card"${project.isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''}>
+            ${project.image
+                ? `<img src="${project.image}" alt="${project.title}" class="project-image" onerror="this.style.background='#000000'">`
+                : `<div class="project-image" aria-hidden="true"></div>`
+            }
             <div class="project-content">
                 <h3 class="project-title">${project.title}</h3>
                 <p class="project-description">${project.description}</p>

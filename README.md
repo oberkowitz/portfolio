@@ -20,7 +20,7 @@ A modern, responsive portfolio website built with plain HTML, CSS, and JavaScrip
 ├── styles.css          # All styling
 ├── script.js           # JavaScript functionality
 ├── projects/           # Individual project pages
-│   ├── project-1.html
+│   ├── parasocialist-rejoice-ep.html
 │   ├── project-2.html
 │   └── project-3.html
 └── README.md          # This file
