@@ -148,12 +148,13 @@ body {
     font-weight: 600;
     transition: var(--transition);
     cursor: pointer;
-    border: none;
     font-size: 1rem;
+    border: 2px solid var(--primary-color);
+
 }
 
 .btn-primary {
-    background-color: white;
+    background-color: var(--bg-dark);
     color: var(--primary-color);
     animation: fadeInUp 0.8s ease 0.4s both;
 }
@@ -164,7 +165,7 @@ body {
 }
 
 .btn-secondary {
-    background-color: var(--primary-color);
+    background-color: var(--bg-dark);
     color: white;
 }
 
