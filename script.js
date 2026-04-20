@@ -93,24 +93,21 @@ const edgeNetworkReleases = [
         title: 'EDGE001 - Spaceport Lounge Music',
         description: 'The first Edge Network release featuring Vitling with remixes by Halffish and DJ Sterni. Released April 2021.',
         image: 'assets/images/edge-network/edge001-spaceport-lounge-music.jpg',
-        link: 'https://edgenetwork.bandcamp.com/album/edge001-spaceport-lounge-music',
-        isExternal: true
+        link: 'projects/edge001-spaceport-lounge-music.html'
     },
     {
         id: 'intersections-vol-1',
         title: 'Intersections Vol. 1',
         description: 'Charity compilation with artists across the Edge Network, including Halffish. Released June 2022.',
         image: 'assets/images/edge-network/intersections-vol-1.jpg',
-        link: 'https://edgenetwork.bandcamp.com/album/intersections-vol-1',
-        isExternal: true
+        link: 'projects/intersections-vol-1.html'
     },
     {
         id: 'intersections-vol-2',
         title: 'Intersections Vol. 2',
         description: 'Second charity compilation from Edge Network featuring Halffish and collaborators. Released December 2022.',
         image: 'assets/images/edge-network/intersections-vol-2.jpg',
-        link: 'https://edgenetwork.bandcamp.com/album/intersections-vol-2',
-        isExternal: true
+        link: 'projects/intersections-vol-2.html'
     }
 ];
 
