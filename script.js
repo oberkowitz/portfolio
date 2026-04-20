@@ -62,39 +62,71 @@ const projects = [
         title: 'Parasocialist',
         description: 'A Berlin-based punk project weaving sardonic wit and playful defiance. Rejoice! EP released September 2025.',
         image: 'assets/images/parasocialist/cover.jpg',
-        tags: ['Music', 'Punk', 'Berlin', 'Production'],
-        link: 'projects/project-1.html'
+        link: 'projects/parasocialist-rejoice-ep.html'
     },
     {
-        id: 'project-2',
-        title: 'Sample Project 2',
-        description: 'Another project description. Showcase your work, skills, and creativity here.',
-        image: 'https://via.placeholder.com/400x200',
-        tags: ['Design', 'UI/UX', 'React'],
-        link: 'projects/project-2.html'
+        id: 'surface-tension',
+        title: 'Surface Tension',
+        description: 'An electronic EP by Halffish, written, produced, and mixed by Oren Berkowitz. Released December 2019.',
+        image: 'assets/images/halffish/surface-tension-cover.jpeg',
+        link: 'projects/halffish-surface-tension.html'
     },
     {
-        id: 'project-3',
-        title: 'Sample Project 3',
-        description: 'Add more projects to demonstrate your range of skills and interests.',
-        image: 'https://via.placeholder.com/400x200',
-        tags: ['Mobile', 'iOS', 'Swift'],
-        link: 'projects/project-3.html'
+        id: 'good-screen-bad-screen',
+        title: 'Good Screen, Bad Screen',
+        description: 'A Halffish EP exploring the contradictions of life in digital work and creative spaces. Released December 2020.',
+        image: 'assets/images/halffish/Good Screen Bad Screen.jpeg',
+        link: 'projects/halffish-good-screen-bad-screen.html'
+    },
+    {
+        id: 'inattention',
+        title: 'Inattention',
+        description: 'An early Halffish EP of immersive electronic sketches and long-form textures. Released February 2016.',
+        image: 'assets/images/halffish/Inattention.jpeg',
+        link: 'projects/halffish-inattention.html'
     }
 ];
 
-function loadProjects() {
-    const projectsGrid = document.getElementById('projectsGrid');
-    if (!projectsGrid) return;
+const edgeNetworkReleases = [
+    {
+        id: 'edge001-spaceport-lounge-music',
+        title: 'EDGE001 - Spaceport Lounge Music',
+        description: 'The first Edge Network release featuring Vitling with remixes by Halffish and DJ Sterni. Released April 2021.',
+        image: 'assets/images/edge-network/edge001-spaceport-lounge-music.jpg',
+        link: 'projects/edge001-spaceport-lounge-music.html'
+    },
+    {
+        id: 'intersections-vol-1',
+        title: 'Intersections Vol. 1',
+        description: 'Charity compilation with artists across the Edge Network, including Halffish. Released June 2022.',
+        image: 'assets/images/edge-network/intersections-vol-1.jpg',
+        link: 'projects/intersections-vol-1.html'
+    },
+    {
+        id: 'intersections-vol-2',
+        title: 'Intersections Vol. 2',
+        description: 'Second charity compilation from Edge Network featuring Halffish and collaborators. Released December 2022.',
+        image: 'assets/images/edge-network/intersections-vol-2.jpg',
+        link: 'projects/intersections-vol-2.html'
+    }
+];
 
-    projectsGrid.innerHTML = projects.map(project => `
-        <a href="${project.link}" class="project-card">
-            <img src="${project.image}" alt="${project.title}" class="project-image" onerror="this.style.background='linear-gradient(135deg, #6366f1, #8b5cf6)'">
-            <div class="project-content">
-                <h3 class="project-title">${project.title}</h3>
-                <p class="project-description">${project.description}</p>
-                <div class="project-tags">
-                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+function renderProjectCards(items, targetGridId) {
+    const targetGrid = document.getElementById(targetGridId);
+    if (!targetGrid) return;
+
+    targetGrid.innerHTML = items.map(project => `
+        <a href="${project.link}" class="project-card"${project.isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''}>
+            <div class="project-media">
+                ${project.image
+                    ? `<img src="${project.image}" alt="${project.title}" class="project-image" onerror="this.style.background='#000000'">`
+                    : `<div class="project-image" aria-hidden="true"></div>`
+                }
+                <div class="project-info">
+                    <div class="project-tooltip">
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-description">${project.description}</p>
+                    </div>
                 </div>
             </div>
         </a>
@@ -103,27 +135,8 @@ function loadProjects() {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-    loadProjects();
+    renderProjectCards(projects, 'projectsGrid');
+    renderProjectCards(edgeNetworkReleases, 'edgeNetworkGrid');
     highlightNav();
 });
-
-// Lazy loading for images
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    observer.unobserve(img);
-                }
-            }
-        });
-    });
-
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-    });
-}
 

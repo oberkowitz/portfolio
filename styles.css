@@ -6,15 +6,15 @@
 }
 
 :root {
-    --primary-color: #6366f1;
+    --primary-color: #8b5cf6;
     --primary-dark: #4f46e5;
-    --secondary-color: #8b5cf6;
-    --text-color: #1f2937;
-    --text-light: #6b7280;
-    --bg-color: #ffffff;
-    --bg-light: #f9fafb;
-    --bg-dark: #111827;
-    --border-color: #e5e7eb;
+    --secondary-color: #6366f1;
+    --text-color: #f9fafb;
+    --text-light: #d1d5db;
+    --bg-color: #000000;
+    --bg-light: #000000;
+    --bg-dark: #000000;
+    --border-color: #374151;
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --transition: all 0.3s ease;
@@ -111,7 +111,10 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('assets/images/parasocialist/Weich-performance-1.JPG');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: white;
     padding: 8rem 2rem;
     text-align: center;
@@ -145,12 +148,13 @@ body {
     font-weight: 600;
     transition: var(--transition);
     cursor: pointer;
-    border: none;
     font-size: 1rem;
+    border: 2px solid var(--primary-color);
+
 }
 
 .btn-primary {
-    background-color: white;
+    background-color: var(--bg-dark);
     color: var(--primary-color);
     animation: fadeInUp 0.8s ease 0.4s both;
 }
@@ -161,7 +165,7 @@ body {
 }
 
 .btn-secondary {
-    background-color: var(--primary-color);
+    background-color: var(--bg-dark);
     color: white;
 }
 
@@ -196,8 +200,8 @@ section {
 
 .project-card {
     background-color: var(--bg-color);
-    border-radius: 0.75rem;
-    overflow: hidden;
+    border-radius: 0;
+    overflow: visible;
     box-shadow: var(--shadow);
     transition: var(--transition);
     text-decoration: none;
@@ -206,23 +210,55 @@ section {
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
+    transform: scale(1.05);
     box-shadow: var(--shadow-lg);
+}
+
+.project-media {
+    position: relative;
 }
 
 .project-image {
     width: 100%;
-    height: 200px;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: #000000;
+    display: block;
 }
 
-.project-content {
-    padding: 1.5rem;
+.project-info {
+    position: absolute;
+    inset: 0;
+}
+
+.project-tooltip {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--text-color);
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.project-card:hover .project-tooltip,
+.project-card:focus-visible .project-tooltip,
+.project-info:hover .project-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
 }
 
 .project-title {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
     color: var(--text-color);
@@ -230,7 +266,7 @@ section {
 
 .project-description {
     color: var(--text-light);
-    margin-bottom: 1rem;
+    margin-bottom: 0;
 }
 
 .project-tags {
@@ -240,7 +276,7 @@ section {
 }
 
 .tag {
-    background-color: var(--bg-light);
+    background-color: #111111;
     color: var(--text-color);
     padding: 0.25rem 0.75rem;
     border-radius: 1rem;
@@ -298,11 +334,12 @@ section {
     color: white;
     text-align: center;
     padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
 }
 
 /* Project Page Styles */
 .project-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: #000000;
     color: white;
     padding: 4rem 2rem;
     text-align: center;
@@ -388,21 +425,6 @@ section {
     display: block;
 }
 
-.video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
-}
-
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
 .image-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -422,13 +444,6 @@ section {
 .image-gallery img:hover {
     transform: scale(1.05);
     box-shadow: var(--shadow-lg);
-}
-
-.audio-player {
-    background-color: var(--bg-light);
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-    margin: 2rem 0;
 }
 
 /* Animations */
