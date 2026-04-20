@@ -91,11 +91,41 @@ const projects = [
     }
 ];
 
-function loadProjects() {
-    const projectsGrid = document.getElementById('projectsGrid');
-    if (!projectsGrid) return;
+const edgeNetworkReleases = [
+    {
+        id: 'edge001-spaceport-lounge-music',
+        title: 'EDGE001 - Spaceport Lounge Music',
+        description: 'The first Edge Network release featuring Vitling with remixes by Halffish and DJ Sterni. Released April 2021.',
+        image: 'assets/images/edge-network/edge001-spaceport-lounge-music.jpg',
+        tags: ['Label Management', 'House', 'Berlin'],
+        link: 'https://edgenetwork.bandcamp.com/album/edge001-spaceport-lounge-music',
+        isExternal: true
+    },
+    {
+        id: 'intersections-vol-1',
+        title: 'Intersections Vol. 1',
+        description: 'Charity compilation with artists across the Edge Network, including Halffish. Released June 2022.',
+        image: 'assets/images/edge-network/intersections-vol-1.jpg',
+        tags: ['Label Management', 'Compilation', 'Berlin'],
+        link: 'https://edgenetwork.bandcamp.com/album/intersections-vol-1',
+        isExternal: true
+    },
+    {
+        id: 'intersections-vol-2',
+        title: 'Intersections Vol. 2',
+        description: 'Second charity compilation from Edge Network featuring Halffish and collaborators. Released December 2022.',
+        image: 'assets/images/edge-network/intersections-vol-2.jpg',
+        tags: ['Label Management', 'Compilation', 'Berlin'],
+        link: 'https://edgenetwork.bandcamp.com/album/intersections-vol-2',
+        isExternal: true
+    }
+];
 
-    projectsGrid.innerHTML = projects.map(project => `
+function renderProjectCards(items, targetGridId) {
+    const targetGrid = document.getElementById(targetGridId);
+    if (!targetGrid) return;
+
+    targetGrid.innerHTML = items.map(project => `
         <a href="${project.link}" class="project-card"${project.isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''}>
             <div class="project-media">
                 ${project.image
@@ -120,7 +150,8 @@ function loadProjects() {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-    loadProjects();
+    renderProjectCards(projects, 'projectsGrid');
+    renderProjectCards(edgeNetworkReleases, 'edgeNetworkGrid');
     highlightNav();
 });
 
