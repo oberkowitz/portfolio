@@ -111,7 +111,10 @@ body {
 
 /* Hero Section */
 .hero {
-    background: #000000;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('assets/images/parasocialist/Weich-performance-1.JPG');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: white;
     padding: 8rem 2rem;
     text-align: center;
@@ -237,6 +240,7 @@ section {
     border-radius: 0.75rem;
     background: rgba(0, 0, 0, 0.9);
     color: var(--text-color);
+    text-align: center;
     box-shadow: var(--shadow-lg);
     opacity: 0;
     visibility: hidden;
