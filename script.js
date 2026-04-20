@@ -65,6 +65,13 @@ const projects = [
         link: 'projects/parasocialist-rejoice-ep.html'
     },
     {
+        id: 'good-screen-bad-screen',
+        title: 'Good Screen, Bad Screen',
+        description: 'An EP that explores the contradictions of life in digital work and creative time. Released December 2020.',
+        image: 'assets/images/halffish/Good Screen Bad Screen.jpeg',
+        link: 'projects/halffish-good-screen-bad-screen.html'
+    },
+    {
         id: 'surface-tension',
         title: 'Surface Tension',
         description: 'An electronic EP by Halffish, written, produced, and mixed by Oren Berkowitz. Released December 2019.',
@@ -72,16 +79,9 @@ const projects = [
         link: 'projects/halffish-surface-tension.html'
     },
     {
-        id: 'good-screen-bad-screen',
-        title: 'Good Screen, Bad Screen',
-        description: 'A Halffish EP exploring the contradictions of life in digital work and creative spaces. Released December 2020.',
-        image: 'assets/images/halffish/Good Screen Bad Screen.jpeg',
-        link: 'projects/halffish-good-screen-bad-screen.html'
-    },
-    {
         id: 'inattention',
         title: 'Inattention',
-        description: 'An early Halffish EP of immersive electronic sketches and long-form textures. Released February 2016.',
+        description: 'Halffish\'s debut of immersive electronic sketches and long-form textures. Released February 2016.',
         image: 'assets/images/halffish/Inattention.jpeg',
         link: 'projects/halffish-inattention.html'
     }
