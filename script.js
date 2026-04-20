@@ -62,7 +62,6 @@ const projects = [
         title: 'Parasocialist',
         description: 'A Berlin-based punk project weaving sardonic wit and playful defiance. Rejoice! EP released September 2025.',
         image: 'assets/images/parasocialist/cover.jpg',
-        tags: ['Music', 'Punk', 'Berlin', 'Production'],
         link: 'projects/parasocialist-rejoice-ep.html'
     },
     {
@@ -70,7 +69,6 @@ const projects = [
         title: 'Surface Tension',
         description: 'An electronic EP by Halffish, written, produced, and mixed by Oren Berkowitz. Released December 2019.',
         image: 'assets/images/halffish/surface-tension-cover.jpeg',
-        tags: ['Electronic', 'Deep House', 'Berlin'],
         link: 'projects/halffish-surface-tension.html'
     },
     {
@@ -78,7 +76,6 @@ const projects = [
         title: 'Good Screen, Bad Screen',
         description: 'A Halffish EP exploring the contradictions of life in digital work and creative spaces. Released December 2020.',
         image: 'assets/images/halffish/Good Screen Bad Screen.jpeg',
-        tags: ['Electronic', 'Wonky House', 'Berlin'],
         link: 'projects/halffish-good-screen-bad-screen.html'
     },
     {
@@ -86,7 +83,6 @@ const projects = [
         title: 'Inattention',
         description: 'An early Halffish EP of immersive electronic sketches and long-form textures. Released February 2016.',
         image: 'assets/images/halffish/Inattention.jpeg',
-        tags: ['Electronic', 'Berlin'],
         link: 'projects/halffish-inattention.html'
     }
 ];
@@ -97,7 +93,6 @@ const edgeNetworkReleases = [
         title: 'EDGE001 - Spaceport Lounge Music',
         description: 'The first Edge Network release featuring Vitling with remixes by Halffish and DJ Sterni. Released April 2021.',
         image: 'assets/images/edge-network/edge001-spaceport-lounge-music.jpg',
-        tags: ['Label Management', 'House', 'Berlin'],
         link: 'https://edgenetwork.bandcamp.com/album/edge001-spaceport-lounge-music',
         isExternal: true
     },
@@ -106,7 +101,6 @@ const edgeNetworkReleases = [
         title: 'Intersections Vol. 1',
         description: 'Charity compilation with artists across the Edge Network, including Halffish. Released June 2022.',
         image: 'assets/images/edge-network/intersections-vol-1.jpg',
-        tags: ['Label Management', 'Compilation', 'Berlin'],
         link: 'https://edgenetwork.bandcamp.com/album/intersections-vol-1',
         isExternal: true
     },
@@ -115,7 +109,6 @@ const edgeNetworkReleases = [
         title: 'Intersections Vol. 2',
         description: 'Second charity compilation from Edge Network featuring Halffish and collaborators. Released December 2022.',
         image: 'assets/images/edge-network/intersections-vol-2.jpg',
-        tags: ['Label Management', 'Compilation', 'Berlin'],
         link: 'https://edgenetwork.bandcamp.com/album/intersections-vol-2',
         isExternal: true
     }
@@ -139,11 +132,6 @@ function renderProjectCards(items, targetGridId) {
                     </div>
                 </div>
             </div>
-            <div class="project-content" aria-hidden="true">
-                <div class="project-tags">
-                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                </div>
-            </div>
         </a>
     `).join('');
 }
@@ -154,24 +142,4 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProjectCards(edgeNetworkReleases, 'edgeNetworkGrid');
     highlightNav();
 });
-
-// Lazy loading for images
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    observer.unobserve(img);
-                }
-            }
-        });
-    });
-
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-    });
-}
 
