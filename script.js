@@ -72,6 +72,22 @@ const projects = [
         image: 'assets/images/halffish/surface-tension-cover.jpeg',
         tags: ['Electronic', 'Deep House', 'Berlin'],
         link: 'projects/halffish-surface-tension.html'
+    },
+    {
+        id: 'good-screen-bad-screen',
+        title: 'Good Screen, Bad Screen',
+        description: 'A Halffish EP exploring the contradictions of life in digital work and creative spaces. Released December 2020.',
+        image: 'assets/images/halffish/Good Screen Bad Screen.jpeg',
+        tags: ['Electronic', 'Wonky House', 'Berlin'],
+        link: 'projects/halffish-good-screen-bad-screen.html'
+    },
+    {
+        id: 'inattention',
+        title: 'Inattention',
+        description: 'An early Halffish EP of immersive electronic sketches and long-form textures. Released February 2016.',
+        image: 'assets/images/halffish/Inattention.jpeg',
+        tags: ['Electronic', 'Berlin'],
+        link: 'projects/halffish-inattention.html'
     }
 ];
 
@@ -87,7 +103,6 @@ function loadProjects() {
                     : `<div class="project-image" aria-hidden="true"></div>`
                 }
                 <div class="project-info">
-
                     <div class="project-tooltip">
                         <h3 class="project-title">${project.title}</h3>
                         <p class="project-description">${project.description}</p>

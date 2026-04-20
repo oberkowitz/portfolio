@@ -209,7 +209,7 @@ section {
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
+    transform: scale(1.05);
     box-shadow: var(--shadow-lg);
 }
 
@@ -227,24 +227,23 @@ section {
 
 .project-info {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    inset: 0;
 }
 
 .project-tooltip {
     position: absolute;
-    top: calc(100% + 0.5rem);
-    right: 0;
-    width: min(280px, calc(100vw - 4rem));
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 1rem;
-    border-radius: 0.75rem;
-    background: rgba(0, 0, 0, 0.9);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.6);
     color: var(--text-color);
     text-align: center;
     box-shadow: var(--shadow-lg);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(0.5rem);
     transition: var(--transition);
     pointer-events: none;
 }
@@ -254,7 +253,7 @@ section {
 .project-info:hover .project-tooltip {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: none;
 }
 
 .project-content {
